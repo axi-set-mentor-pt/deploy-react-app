@@ -27,7 +27,7 @@ jobs:
           command: |
             git config --global user.email "setmentor_parttime04@academyxi.com"
             git config --global user.name "Nik"
-            gh-pages -d build
+            npx gh-pages -d build
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
