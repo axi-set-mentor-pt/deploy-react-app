@@ -4,7 +4,6 @@ version: 2.1
 
 orbs:
   node: circleci/node@5.0.2
-  gh: circleci/github-cli@2.2.0
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -14,19 +13,18 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
+      - add_ssh_keys:
+        fingerprints:
+          - "09:36:0a:b7:f4:a4:2a:48:0a:dd:13:1a:5c:87:92:3e"
       - checkout
       - node/install-packages:
           pkg-manager: npm
       - run:
           name: "Build"
           command: "npm run build"
-      - gh/release:
-          context:
-            - GH_TOKEN
-          filters:
-            branches:
-              only:
-                - main
+      - run:
+          name: "Deploy"
+          command: "npm run deploy"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
