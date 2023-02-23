@@ -25,7 +25,8 @@ jobs:
             git remote set-url origin https://git:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
             npx gh-pages -d build -u "github-actions-bot <support+actions@github.com>"
           env:
-            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+            GH_TOKEN: ${{ secrets.GH_TOKEN }}
+            GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
